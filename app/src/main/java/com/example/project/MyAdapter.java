@@ -31,13 +31,12 @@ public class MyAdapter extends  RecyclerView.Adapter<MyViewHolder>{
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.ID.setText(ProjektList.get(position).getID());
         holder.Location.setText(ProjektList.get(position).getLocation());
-        holder.Name.setText(ProjektList.get(position).getName());
-        holder.Login.setText(ProjektList.get(position).getLogin());
+
     }
 
     @Override
     public int getItemCount() {
-        return new;
+        return ProjektList.size();
 
     }
 }
