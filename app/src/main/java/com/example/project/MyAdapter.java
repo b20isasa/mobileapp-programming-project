@@ -15,8 +15,8 @@ import java.util.List;
 public class MyAdapter extends  RecyclerView.Adapter<MyViewHolder>{
     private List<Items> ProjektList;
 
-    public MyAdapter(List<Items> ProjektLista) {
-        this.ProjektList = ProjektLista;
+    public MyAdapter(List<Items> ProjektList) {
+        this.ProjektList = ProjektList;
     }
 
     @NonNull

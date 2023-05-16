@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -22,45 +23,35 @@ public class MainActivity extends AppCompatActivity {
     private Button knappen;
     private MyAdapter adapter;
     private ArrayList<Items> ProjectList;
-    private final String JSON_URL = "https://mobprog.webug.se/json-api?login=b20isasa";
-
+    private TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        String json = "https://mobprog.webug.se/json-api?login=b20isasa";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        Log.d("==>", "onCreate Ran");
+        Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<Items>>(){}.getType();
+        textView = findViewById(R.id.textView);
 
-
-        ProjectList = new ArrayList<Items>();
         adapter = new MyAdapter(ProjectList);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        ProjectList = gson.fromJson(json, type);
 
         knappen = findViewById(R.id.knappen);
 
-        knappen.setOnClickListener(new View.OnClickListener(){
+        knappen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d("==>", "tillbaka");
-                Intent intent = new Intent (MainActivity.this, MainActivity2.class);
+                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
                 startActivity(intent);
             }
         });
 
-
     }
-
-
-    public void onPostExecute(String json){
-        Gson gson = new Gson();
-        Type type = new TypeToken<ArrayList<Items>>(){}.getType();
-        ArrayList<Items> Alista = gson.fromJson(json, type);
-        ProjectList.addAll(Alista);
-        adapter.notifyDataSetChanged();
-    }
-
-
 }
-
