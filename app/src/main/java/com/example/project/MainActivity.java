@@ -24,23 +24,21 @@ public class MainActivity extends AppCompatActivity {
     private MyAdapter adapter;
     private ArrayList<Items> ProjectList;
     private TextView textView;
+    private final String JSON_URL = "https://mobprog.webug.se/json-api?login=b20isasa";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        String json = "https://mobprog.webug.se/json-api?login=b20isasa";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Log.d("==>", "onCreate Ran");
-        Gson gson = new Gson();
-        Type type = new TypeToken<ArrayList<Items>>(){}.getType();
+
         textView = findViewById(R.id.textView);
 
         adapter = new MyAdapter(ProjectList);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        ProjectList = gson.fromJson(json, type);
+
 
         knappen = findViewById(R.id.knappen);
 
