@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".JsonTask"
+            android:exported="false" />
+        <activity
             android:name=".MyViewHolder"
             android:exported="false" />
         <activity

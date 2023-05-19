@@ -53,5 +53,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }public void onPostExecute(String json){
+        Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<Items>>(){}.getType();
+        ArrayList<Items> Alista = gson.fromJson(json, type);
+        ProjectList.addAll(Alista);
+        adapter.notifyDataSetChanged();
     }
 }
